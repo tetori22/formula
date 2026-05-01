@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <title>MatematiX</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+<div class="container mt-5 text-center">
+
+  <h2 class="mb-2">📐 MatematiX</h2>
+  <p class="text-muted">Zgjidh figurën dhe llogarit menjëherë</p>
+
+  <button class="btn btn-outline-primary m-1" onclick="zgjedhFiguren('katror')">⬜ Katror</button>
+  <button class="btn btn-outline-success m-1" onclick="zgjedhFiguren('drejtkendesh')">▭ Drejtkëndësh</button>
+  <button class="btn btn-outline-warning m-1" onclick="zgjedhFiguren('rreth')">⚪ Rreth</button>
+  <button class="btn btn-outline-danger m-1" onclick="zgjedhFiguren('trekendesh')">🔺 Trekëndësh</button>
+
+  <div id="inputet" class="mt-4"></div>
+
+  <button class="btn btn-dark mt-3" onclick="llogarit()">Llogarit</button>
+
+  <h5 class="mt-3" id="rezultati"></h5>
+
+
+
+  <hr class="mt-5">
+
+  <p>Klubi i Kodimit</p>
+  <p>Shkolla "22 Tetori"</p>
+</div>
+
+<script>
+
+let figura = "";
+
+function zgjedhFiguren(f) {
+  figura = f;
+
+  let html = "";
+
+  if (f === "katror") {
+    html = '<input id="brinja" type="number" class="form-control mb-2" placeholder="Brinja">';
+  }
+
+  if (f === "drejtkendesh") {
+    html = '<input id="gjatesia" type="number" class="form-control mb-2" placeholder="Gjatësia">' +
+           '<input id="gjeresia" type="number" class="form-control mb-2" placeholder="Gjerësia">';
+  }
+
+  if (f === "rreth") {
+    html = '<input id="rrezja" type="number" class="form-control mb-2" placeholder="Rrezja">';
+  }
+
+  if (f === "trekendesh") {
+    html = '<input id="baza" type="number" class="form-control mb-2" placeholder="Baza">' +
+           '<input id="lartesia" type="number" class="form-control mb-2" placeholder="Lartësia">' +
+           '<input id="brinja1" type="number" class="form-control mb-2" placeholder="Brinja 1">' +
+           '<input id="brinja2" type="number" class="form-control mb-2" placeholder="Brinja 2">' +
+           '<input id="brinja3" type="number" class="form-control mb-2" placeholder="Brinja 3">';
+  }
+
+  document.getElementById("inputet").innerHTML = html;
+  document.getElementById("rezultati").innerText = "";
+}
+
+function llogarit() {
+  let siperfaqe = 0;
+  let perimetri = 0;
+
+  if (figura === "katror") {
+    let brinja = +document.getElementById("brinja").value;
+    siperfaqe = brinja * brinja;
+    perimetri = 4 * brinja;
+  }
+
+  if (figura === "drejtkendesh") {
+    let gjatesia = +document.getElementById("gjatesia").value;
+    let gjeresia = +document.getElementById("gjeresia").value;
+    siperfaqe = gjatesia * gjeresia;
+    perimetri = 2 * (gjatesia + gjeresia);
+  }
+
+  if (figura === "rreth") {
+    let rrezja = +document.getElementById("rrezja").value;
+    siperfaqe = Math.PI * rrezja * rrezja;
+    perimetri = 2 * Math.PI * rrezja;
+  }
+
+  if (figura === "trekendesh") {
+    let baza = +document.getElementById("baza").value;
+    let lartesia = +document.getElementById("lartesia").value;
+    let brinja1 = +document.getElementById("brinja1").value;
+    let brinja2 = +document.getElementById("brinja2").value;
+    let brinja3 = +document.getElementById("brinja3").value;
+
+    siperfaqe = (baza * lartesia) / 2;
+    perimetri = brinja1 + brinja2 + brinja3;
+  }
+
+  document.getElementById("rezultati").innerText =
+    "Sipërfaqja: " + siperfaqe.toFixed(2) +
+    " | Perimetri: " + perimetri.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
