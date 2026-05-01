@@ -1,6 +1,8 @@
 import streamlit as st
 
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
-)
+st.title("MatematiX 📐")
+
+with open("matematix.html", "r", encoding="utf-8") as f:
+    html_code = f.read()
+
+st.components.v1.html(html_code, height=700)
